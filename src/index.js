@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Board from './board';
+import Note from './Note';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Board />, document.getElementById('bulletin-board'));
+ReactDOM.render(<Note />, document.getElementById('bulletin-board'));
 registerServiceWorker();
