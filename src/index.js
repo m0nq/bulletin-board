@@ -5,4 +5,5 @@ import Note from './Note';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<Note />, document.getElementById('bulletin-board'));
+
 registerServiceWorker();
