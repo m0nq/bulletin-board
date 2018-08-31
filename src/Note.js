@@ -28,14 +28,14 @@ class Note extends Component {
   }
 
   save() {
-    alert('saved');
+    alert(this._newText.value)
   }
 
   renderForm() {
     return (
       <div className="note">
         <form action="">
-          <textarea name="" id="" cols="" rows="" />
+          <textarea name="" id="" cols="" rows="" ref={input => this._newText = input}/>
           <button onClick={this.save}><FaSave/></button>
         </form>
       </div>
