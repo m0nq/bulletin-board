@@ -34,9 +34,9 @@ class Note extends Component {
   renderForm() {
     return (
       <div className="note">
-        <form action="">
-          <textarea name="" id="" cols="" rows="" ref={input => this._newText = input}/>
-          <button onClick={this.save}><FaSave/></button>
+        <form>
+          <textarea ref={input => this._newText = input} />
+          <button onClick={this.save}><FaSave /></button>
         </form>
       </div>
     );
@@ -45,7 +45,7 @@ class Note extends Component {
   renderDisplay() {
     return (
       <div className="note">
-        <p>Learn React</p>
+        <p>{this.props.children}</p>
         <span>
           <button onClick={this.edit} id="edit"><FaPencilAlt /></button>
           <button onClick={this.remove} id="remove"><FaTrash /></button>
