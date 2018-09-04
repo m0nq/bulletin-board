@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Note from './Note';
+import {FaPlus} from 'react-icons/fa';
 
 class Board extends Component {
 
@@ -7,25 +8,54 @@ class Board extends Component {
     super(props);
 
     this.state = {
-      notes: [
-        {id: 33, note: "Call Lisa"},
-        {id: 34, note: "Email John"},
-        {id: 35, note: "Order printer ink"}
-      ]
+      notes: []
     };
+
     this.eachNote = this.eachNote.bind(this);
+    this.update = this.update.bind(this);
+    this.remove = this.remove.bind(this);
+    this.add = this.add.bind(this);
+    this.nextId = this.nextId.bind(this);
+  }
+
+  add(text) {
+    this.setState(prevState => ({
+      notes: [
+        ...prevState.notes,
+        {id: this.nextId(), note: text}
+      ]
+    }));
+  }
+
+  nextId() {
+    this.uniqueId = this.uniqueId || 0;
+    return this.uniqueId++;
+  }
+
+  update(newText, i) {
+    this.setState(previousState => ({
+      notes: previousState.notes.map(note => (note.id !== i) ? note : {...note, note: newText})
+    }));
   }
 
   eachNote(note, i) {
     return (
-      <Note key={i} index={i}>{note.note}</Note>
+      <Note key={i} index={i} onChange={this.update} onRemove={this.remove}>{note.note}</Note>
     );
+  }
+
+  remove(id) {
+    console.log('Removing item at index ', id);
+    this.setState(previousState => ({
+      notes: previousState.notes.filter(note => note.id !== id)
+    }));
   }
 
   render() {
     return (
       <div className="board">
         {this.state.notes.map(this.eachNote)}
+        <button onClick={this.add.bind(null, "New Note")} id="add"><FaPlus /></button>
       </div>
     );
   }
