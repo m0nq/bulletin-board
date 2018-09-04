@@ -19,12 +19,11 @@ class Board extends Component {
   }
 
   componentWillMount() {
-    let self = this;
-
+    const self = this;
     if (this.props.count) {
       fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
         .then(response => response.json())
-        .then(json => json[0].split('. ').forEach(sentence => self.add(sentence.substring(0, 25))))
+        .then(json => json[0].split('. ').forEach(sentence => self.add(sentence.substring(0, 25))));
     }
   }
 
@@ -55,7 +54,6 @@ class Board extends Component {
   }
 
   remove(id) {
-    console.log('Removing item at index ', id);
     this.setState(previousState => ({
       notes: previousState.notes.filter(note => note.id !== id)
     }));
